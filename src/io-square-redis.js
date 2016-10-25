@@ -15,17 +15,17 @@ IO.redis = {
     }
   },
   get (key) {
-    return new IO(cb => {
-      this.client.get(key, (err, reply)=>{
-       cb(reply)
-    })
-  })
-}
+    return new IO(cb => this.client.get(key, cb))
+                  .map((e,v) => v)
+  },
+  
 }
 
-IO.redis.setClient(0, true, 'enterPasswordhere')
+IO.redis.setClient(0, true, 'TESTpassWord123')
 
-IO.redis.get('job')
-  .then((val)=> {
-    console.log(val)
+IO.redis.get('geekskool')
+  .error(err => console.log('error', err))
+  .then((a)=> {
+      console.log(a)
+      // console.log(val)
   })
