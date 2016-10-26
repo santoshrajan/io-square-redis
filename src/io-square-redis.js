@@ -100,4 +100,4 @@ IO.redis = {
   }
 }
 
-module.exports = IO.redis
+module.exports = IO
