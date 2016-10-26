@@ -2,13 +2,15 @@ const IO = require('io-square')
 const db = require('redis')
 
 IO.redis = {
-  setClient (dbNum = 0, auth = false, password = null) {
+  setClient (dbNum = 0, auth = false, password = null, port = 6379, host = '127.0.0.1') {
+
     if (auth !== true) {
-      const c = db.createClient()
+      const c = db.createClient(port, host)
       c.select(dbNum, db.print)
       this.client = c
     } else {
-      const c = db.createClient()
+      const c = db.createClient(port, host)
+      console.log(c)
       c.auth(password, db.print)
       c.select(dbNum, db.print)
       this.client = c
