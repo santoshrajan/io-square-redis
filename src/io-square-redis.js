@@ -57,8 +57,47 @@ IO.redis = {
   hexists (key, field) {
     return new IO(cb => this.client.hexists(key, field, cb))
                  .map((e, v) => v === 1)
-  }
+  },
 
+  hget (key, feild) {
+    return new IO(cb => this.client.hget(key, feild, cb))
+                  .map((e, v) => v)
+  },
+
+  hgetall (key) {
+    return new IO(cb => this.client.hgetall(key, cb))
+                  .map((e, v) => v)
+  },
+
+  hdel (key, feild) {
+    return new IO(cb => this.client.hdel(key, feild, cb))
+                  .map((e, v) => v)
+  },
+
+  hmset (...args) {
+    return new IO(cb => this.client.hmset(args, cb))
+                  .map((e, v) => v)
+  },
+
+  hmget (...args) {
+    return new IO(cb => this.client.hmget(args, cb))
+                  .map((e, v) => [v])
+  },
+
+  lrange (...args) {
+    return new IO(cb => this.client.lrange(args, cb))
+                  .map((e, v) => [v])
+  },
+
+  lrem (...args) {
+    return new IO(cb => this.client.lrem(args, cb))
+                  .map((e, v) => v)
+  },
+
+  lset (...args) {
+    return new IO(cb => this.client.lset(args, cb))
+                  .map((e, v) => v)
+  }
 }
 
 module.exports = IO.redis
