@@ -27,6 +27,21 @@ IO.redis = {
                  .map((e, confirmation) => confirmation === 'OK' ? val : e)
   },
 
+  incr (key) {
+    return new IO(cb => this.client.incr(key, cb))
+                  .map((e, v) => v)
+  },
+
+  decr (key) {
+    return new IO(cb => this.client.decr(key, cb))
+                  .map((e, v) => v)
+  },
+
+  append (key, value) {
+    return new IO(cb => this.client.append(key, value, cb))
+                  .map((e, v) => v)
+  },
+
   lpush (key, ...values) {
     return new IO(cb => this.client.lpush(key, values, cb))
                  .map((e, n) => values.length === n)
@@ -61,8 +76,8 @@ IO.redis = {
                  .map((e, v) => v === 1)
   },
 
-  hget (key, feild) {
-    return new IO(cb => this.client.hget(key, feild, cb))
+  hget (key, field) {
+    return new IO(cb => this.client.hget(key, field, cb))
                   .map((e, v) => v)
   },
 
@@ -71,8 +86,8 @@ IO.redis = {
                   .map((e, v) => v)
   },
 
-  hdel (key, feild) {
-    return new IO(cb => this.client.hdel(key, feild, cb))
+  hdel (key, field) {
+    return new IO(cb => this.client.hdel(key, field, cb))
                   .map((e, v) => v)
   },
 
@@ -99,7 +114,18 @@ IO.redis = {
   lset (...args) {
     return new IO(cb => this.client.lset(args, cb))
                   .map((e, v) => v)
+  },
+
+  sadd (key,...field) {
+    return new IO(cb => this.client.sadd(key, field, cb))
+                  .map((e, v) => v)
+  },
+
+  smembers (key) {
+    return new IO(cb => this.client.smembers(key, cb))
+                  .map((e, v) => [v])
   }
+
 }
 
 module.exports = IO
