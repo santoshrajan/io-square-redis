@@ -1,0 +1,34 @@
+{
+  "name": "io-square-redis",
+  "version": "0.0.0",
+  "description": "IO wrapper for Redis",
+  "main": "lib/io-square-redis.js",
+  "scripts": {"prepublish" : "gulp"},
+  "keywords": [
+    "IO",
+    "Monad",
+    "JavaScript",
+    "Redis"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/santoshrajan/io-square-redis.git"
+  },
+  "author": "Santosh Rajan",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  },
+  "dependencies": {
+    "io-square": "^0.1.5",
+    "redis": "^2.6.2"
+  }
+}
